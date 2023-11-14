@@ -28,5 +28,5 @@ data <- read_delim(".../group_14_project/_raw/GSE52778.txt.gz",delim = " ",show_
 
 ```{r}
 dir_create(path = "../group_14_project/data/")
-rite_csv(x = data,file = "../group_14_project/data/GSE52778.csv")
+write_csv(x = data,file = "../group_14_project/data/GSE52778.csv")
 ```
