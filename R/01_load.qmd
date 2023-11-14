@@ -4,35 +4,29 @@ Load libraries
 
 ```{r}
 #| message: false
-library("tidyverse")
-library(GEOquery)
+library(tidyverse)
 library(readr)
 ```
 
 Load raw data
 
 ```{r}
-dir_create(path = "~/projects/group_14_project/_raw/")
+dir_create(path = "../group_14_project/_raw/")
 
 url <- "https://www.ncbi.nlm.nih.gov/geo/download/?acc=GSE52778&format=file&file=GSE52778%5FAll%5FSample%5FFPKM%5FMatrix%2Etxt%2Egz"
 
-destination <- "~/projects/group_14_project/_raw/GSM1275862.txt.gz"
+destination <- "../group_14_project/_raw/GSE52778.txt.gz"
 
 download.file(url, destination)
 ```
 
+Save the loaded data as csv
+
 ```{r}
-data <- read_delim("~/projects/group_14_project/_raw/GSM1275862.txt.gz",show_col_types = FALSE)
+data <- read_delim(".../group_14_project/_raw/GSE52778.txt.gz",delim = " ",show_col_types = FALSE)
 ```
 
 ```{r}
-data
-```
-
-```{r}
-data <- read_delim("~/projects/group_14_project/_raw/GSE52778_All_Sample_FPKM_Matrix.txt",delim = " ",show_col_types = FALSE)
-```
-
-```{r}
-data
+dir_create(path = "../group_14_project/data/")
+rite_csv(x = data,file = "../group_14_project/data/GSE52778.csv")
 ```
