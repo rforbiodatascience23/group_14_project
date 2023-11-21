@@ -1,0 +1,44 @@
+Load packages
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+
+Import data
+```{r}
+data <- read.csv("../data/loaded.csv")
+```
+
+Tobacco and alcohol
+```{r}
+ggplot(data=data,
+       mapping = aes(x=alcohol,
+                     y=tobacco,
+                     color=chd))+
+  geom_point()
+```
+
+Obesity and adiposity
+```{r}
+ggplot(data=data,
+       mapping = aes(x=adiposity,
+                     y=obesity,
+                     color=chd))+
+  geom_point()
+```
+
+Investigating family history
+```{r}
+hered <- data |> mutate(inheritance = case_when(
+    famhist == "Present" & chd == "1" ~ "Inherited",
+    famhist == "Absent" & chd == "1" ~ "De novo",
+    famhist == "Present" & chd == "0" ~ "Escaped",
+    famhist == "Absent" & chd == "0" ~ "Safe"))
+
+ggplot(data=hered,
+       mapping = aes(x=inheritance))+
+  geom_bar()+
+  theme_minimal()
+
+```
+
