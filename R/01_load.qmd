@@ -39,7 +39,7 @@ add_na_randomly <- function(x, prob = 0.01) {
 ```
 
 ```{r}
-# Run add_na_randomly on all columns
+# Run add_na_randomly on all column
 error_data <- data %>% 
   mutate_all(add_na_randomly)
 ```

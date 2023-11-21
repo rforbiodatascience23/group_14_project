@@ -1,0 +1,84 @@
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+data <- read.csv("../data/loaded.csv")
+```
+
+
+```{r}
+dim(data)
+#view(data)
+```
+
+```{r}
+#remove the first column from the data, because it does not give us any information
+data <- data %>%
+  select(-row.names)
+```
+
+```{r}
+
+#Converting famhist (categorical variable) into numerical variable (1= present, 0 =absent)
+data <- data %>%
+  mutate(famhist_numeric = if_else(famhist == "Present", 1, 0))
+```
+
+```{r}
+
+data <- data %>%
+  mutate(age_interval = cut(age, breaks = c(0, 20, 40, 60, Inf), labels = c("0-20", "20-40", "40-60", "60+")))
+```
+
+
+```{r}
+
+#adding another variable (weight_status), based on obesity
+data <- data %>%
+  mutate(weight_status = case_when(
+    obesity < 18.5 ~ "Underweight",
+    obesity >= 18.5 & obesity < 25 ~ "Normal Weight",
+    obesity >= 25 & obesity < 30 ~ "Overweight",
+    obesity >= 30 ~ "Obese",
+    TRUE ~ NA_character_  # Handles cases not covered by the conditions
+  ))
+```
+
+
+```{r}
+#adding another variable (alcohol_status), based on how much quantity someone drinks alcohol
+data <- data %>%
+  mutate(alcohol_status = case_when(
+    alcohol == 0 ~ "Non-Drinker",
+    alcohol > 0 & alcohol <= 20 ~ "Low",
+    alcohol > 20 & alcohol <= 40 ~ "Moderate",
+    alcohol > 40 ~ "High",
+    TRUE ~ NA_character_  # Handles cases not covered by the conditions
+  ))
+
+```
+
+
+```{r}
+#adding another variable (exercise_habits), based on typea and age variable
+data <- data %>%
+  mutate(exercise_habits = case_when(
+    typea > 60 & age < 40 ~ "Active",
+    typea > 50 & age >= 40 ~ "Active",
+    TRUE ~ "Inactive"
+  ))
+```
+
+```{r}
+#adding another variable "hered" (whether you have inhereted the disease or not etc)
+
+data <- data  %>% mutate(inheritance = case_when(
+    famhist == "Present" & chd == "1" ~ "Inherited",
+    famhist == "Absent" & chd == "1" ~ "De novo",
+    famhist == "Present" & chd == "0" ~ "Escaped",
+    famhist == "Absent" & chd == "0" ~ "Safe"))
+
+```
+
