@@ -1,0 +1,31 @@
+# Install and load required packages, installment is only required if you dont have the packages required installed already
+
+install.packages("ggplot2") 
+library(ggplot2)
+
+# Read our data into a data frame (replace 'your_data.csv' with our actual data file)
+# my_data <- read.csv("your_data.csv")
+
+# Extract the numeric columns for PCA
+numeric_data <- my_data[, sapply(my_data, is.numeric)]
+
+# Perform PCA
+pca_result <- prcomp(numeric_data, scale. = TRUE)
+
+# Print summary of PCA
+summary(pca_result)
+
+# Graph the proportion of variance accounted for by individual principal components.
+scree_plot <- ggplot() +
+  geom_bar(stat = "identity", aes(x = 1:length(pca_result$sdev), y = pca_result$sdev^2 / sum(pca_result$sdev^2))) +
+  labs(x = "Principal Component", y = "Proportion of Variance Explained") +
+  ggtitle("Scree Plot") +
+  theme_minimal()
+
+print(scree_plot)
+
+# Create a biplot illustrating the relationship between the first two principal components.
+biplot(pca_result, scale = 0)
+
+# Retrieve the distinct loadings (coefficients) representing the contribution of each variable to each principal component.
+loadings <- pca_result$rotation
