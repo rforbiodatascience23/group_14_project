@@ -1,0 +1,19 @@
+# Clean Loaded Data
+
+```{r}
+library(ggplot2)
+```
+
+```{r}
+data <- read.csv("../data/GSE52778.csv")
+```
+
+```{r}
+data
+```
+
+```{r}
+data %>%
+  select(class_code) %>% 
+  unique()
+```
