@@ -71,3 +71,14 @@ data <- data %>%
   ))
 ```
 
+```{r}
+#adding another variable "hered" (whether you have inhereted the disease or not etc)
+
+data <- data  %>% mutate(inheritance = case_when(
+    famhist == "Present" & chd == "1" ~ "Inherited",
+    famhist == "Absent" & chd == "1" ~ "De novo",
+    famhist == "Present" & chd == "0" ~ "Escaped",
+    famhist == "Absent" & chd == "0" ~ "Safe"))
+
+```
+
