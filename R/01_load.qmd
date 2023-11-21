@@ -6,6 +6,7 @@ Load libraries
 #| message: false
 library(tidyverse)
 library(readr)
+library(purrr)
 ```
 
 Load raw data
@@ -23,14 +24,32 @@ download.file(url, destination)
 Save the loaded data as csv
 
 ```{r}
-data <- read_delim("../_raw/raw.txt",delim = ",",show_col_types = FALSE)
+data <- read_delim("../_raw/raw.txt",
+                   delim = ",",
+                   show_col_types = FALSE)
 ```
 
 ```{r}
-dir.create(path = "../data/")
-write_csv(x = data,file = "../data/loaded.csv")
+## Function to randomly replace the 
+set.seed(123)
+add_na_randomly <- function(x, prob = 0.01) {
+  set.seed(123)
+  replace(x,runif(length(x))<prob,NA)
+}
 ```
 
 ```{r}
+<<<<<<< HEAD
 head(data)
+=======
+# Run add_na_randomly on all columns
+error_data <- data %>% 
+  mutate_all(add_na_randomly)
+```
+
+```{r}
+# Create directory data and save the loaded dataset
+dir.create(path = "../data/")
+write_csv(x = error_data, file = "../data/loaded.csv")
+>>>>>>> 2507c83ae25dcd1c422a4eda89f7023751890ffd
 ```

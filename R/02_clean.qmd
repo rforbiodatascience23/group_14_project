@@ -5,15 +5,24 @@ library(ggplot2)
 ```
 
 ```{r}
-data <- read.csv("../data/GSE52778.csv")
+data <- read.csv("../data/loaded.csv")
 ```
 
 ```{r}
-data
+# Drop NA and remove 
+cleaned_data <- data %>%
+  drop_na() %>% 
+  select(-row.names)
 ```
 
 ```{r}
-data %>%
-  select(class_code) %>% 
-  unique()
+cat("Number of rows dropped:", dim(data)[1] - dim(cleaned_data)[1],"\n")
+```
+
+```{r}
+cat("Number of colums dropped:", dim(data)[2] - dim(cleaned_data)[2],"\n")
+```
+
+```{r}
+write_csv(x = error_data, file = "../data/cleaned.csv")
 ```
