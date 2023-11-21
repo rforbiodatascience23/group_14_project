@@ -45,7 +45,7 @@ error_data <- data %>%
 ```
 
 ```{r}
-# Create directory data and save the loaded dataset
+# Create directory data and save the loaded data set
 dir.create(path = "../data/")
 write_csv(x = error_data, file = "../data/loaded.csv")
 ```
