@@ -24,7 +24,8 @@ ggplot(data=data,
        mapping = aes(x=adiposity,
                      y=obesity,
                      color=chd))+
-  geom_point()
+  geom_point()+ 
+  geom_smooth()
 ```
 
 Investigating family history
