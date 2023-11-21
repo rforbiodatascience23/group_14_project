@@ -37,7 +37,8 @@ hered <- data |> mutate(inheritance = case_when(
 
 ggplot(data=hered,
        mapping = aes(x=inheritance))+
-  geom_histogram(binwidth = 1, alpha = 0.5)
+  geom_bar()+
+  theme_minimal()
 
 ```
 
