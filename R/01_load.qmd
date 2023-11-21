@@ -32,5 +32,5 @@ write_csv(x = data,file = "../data/loaded.csv")
 ```
 
 ```{r}
-data
+head(data)
 ```
