@@ -5,23 +5,63 @@ format: html
 editor: visual
 ---
 
-## Quarto
+## Modelling of the data 
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
-
-## Running Code
-
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
+Loading Libraries
 
 ```{r}
-1 + 1
+library(tidyverse)
+library(broom)
 ```
 
-You can add options to executable code like this
+Load augmented data
 
 ```{r}
-#| echo: false
-2 * 2
+#loading augmentated data for modeling
+lm_data <- read_csv("../data/augmented.csv")
 ```
 
-The `echo: false` option disables the printing of code (only output is displayed).
+Modelling using lm() function
+
+```{r}
+lm_model <- lm(chd ~ tobacco + alcohol, data = lm_data)
+```
+
+Making the model data tidy
+
+```{r}
+lm_model |> tidy()
+```
+
+Visualizing P value of the model
+
+```{r}
+lm_model |> 
+  tidy() |> 
+  ggplot(aes(x = term,
+             y = -log10(p.value))) +
+  geom_point() +
+  geom_hline(yintercept = -log10(0.05),
+             linetype = "dashed")
+```
+
+Including the confidence intervals
+
+```{r}
+ci<- lm_model |> 
+  tidy(conf.int = TRUE,
+       conf.level = 0.95)
+ci
+```
+
+Visualizing the confidence interval
+
+```{r}
+ci |> 
+  ggplot(aes(x = estimate,
+             y = term,
+             xmin = conf.low,
+             xmax = conf.high)) +
+  geom_errorbarh(height = 0.1) +
+  geom_point()
+```
