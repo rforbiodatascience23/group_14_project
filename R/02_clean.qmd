@@ -16,13 +16,13 @@ cleaned_data <- data %>%
 ```
 
 ```{r}
-cat("Number of rows dropped:", dim(data)[1] - dim(cleaned_data)[1],"\n")
+cat("Number of rows dropped:", nrow(data) - nrow(cleaned_data),"\n")
 ```
 
 ```{r}
-cat("Number of colums dropped:", dim(data)[2] - dim(cleaned_data)[2],"\n")
+cat("Number of colums dropped:", ncol(data) - ncol(cleaned_data),"\n")
 ```
 
 ```{r}
-write_csv(x = error_data, file = "../data/cleaned.csv")
+write_csv(x = cleaned_data, file = "../data/cleaned.csv")
 ```

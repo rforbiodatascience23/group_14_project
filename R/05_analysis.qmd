@@ -1,15 +1,18 @@
 Load packages
+
 ```{r}
 library(tidyverse)
 library(ggplot2)
 ```
 
 Import data
+
 ```{r}
-data <- read.csv("../data/loaded.csv")
+data <- read.csv("../data/augmented.csv")
 ```
 
 Tobacco and alcohol
+
 ```{r}
 ggplot(data=data,
        mapping = aes(x=alcohol,
@@ -19,16 +22,20 @@ ggplot(data=data,
 ```
 
 Obesity and adiposity
+
 ```{r}
+
+col_colours <- c("0" = "#0053B3", "1"="#FFAA17")
 ggplot(data=data,
        mapping = aes(x=adiposity,
                      y=obesity,
-                     color=chd))+
+                     color=factor(chd)))+
   geom_point()+ 
-  geom_smooth()
+  geom_smooth(method = 'loess', formula = 'y~x') + scale_color_manual(values = col_colours)
 ```
 
 Investigating family history
+
 ```{r}
 hered <- data |> mutate(inheritance = case_when(
     famhist == "Present" & chd == "1" ~ "Inherited",
@@ -42,4 +49,3 @@ ggplot(data=hered,
   theme_minimal()
 
 ```
-

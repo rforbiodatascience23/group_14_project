@@ -2,21 +2,13 @@
 library(tidyverse)
 ```
 
-
 ```{r}
-data <- read.csv("../data/loaded.csv")
+data <- read.csv("../data/cleaned.csv")
 ```
-
 
 ```{r}
 dim(data)
 #view(data)
-```
-
-```{r}
-#remove the first column from the data, because it does not give us any information
-data <- data %>%
-  select(-row.names)
 ```
 
 ```{r}
@@ -32,7 +24,6 @@ data <- data %>%
   mutate(age_interval = cut(age, breaks = c(0, 20, 40, 60, Inf), labels = c("0-20", "20-40", "40-60", "60+")))
 ```
 
-
 ```{r}
 
 #adding another variable (weight_status), based on obesity
@@ -45,7 +36,6 @@ data <- data %>%
     TRUE ~ NA_character_  # Handles cases not covered by the conditions
   ))
 ```
-
 
 ```{r}
 #adding another variable (alcohol_status), based on how much quantity someone drinks alcohol
@@ -60,9 +50,8 @@ data <- data %>%
 
 ```
 
-
 ```{r}
-#adding another variable (exercise_habits), based on typea and age variable
+#adding another variable (exercise_habits), based on type and age variable
 data <- data %>%
   mutate(exercise_habits = case_when(
     typea > 60 & age < 40 ~ "Active",
@@ -80,5 +69,18 @@ data <- data  %>% mutate(inheritance = case_when(
     famhist == "Present" & chd == "0" ~ "Escaped",
     famhist == "Absent" & chd == "0" ~ "Safe"))
 
+
+data <- data %>% 
+  mutate(chd_status = if_else(chd == 1, "Present", "Absent"))
+
+
+factor_cols <- c("famhist","age_interval","weight_status","alcohol_status","exercise_habits","inheritance","chd_status")
+
+data <- data %>% 
+  mutate_at(factor_cols,as.factor)
+
 ```
 
+```{r}
+write_csv(x = data, file = "../data/augmented.csv")
+```

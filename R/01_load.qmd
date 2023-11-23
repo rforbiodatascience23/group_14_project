@@ -2,24 +2,51 @@
 
 Load libraries
 
-```{r} #| message: false library(tidyverse) library(readr) library(purrr)}
+```{r}
+#| message: false 
+library(tidyverse) 
+library(readr) 
+library(purrr)
 ```
 
 Load raw data
 
-```{r} dir.create(path = "../_raw/")  url <- "https://hastie.su.domains/ElemStatLearn/datasets/SAheart.data"  destination <- "../_raw/raw.txt"  download.file(url, destination)}
+```{r}
+dir.create(path = "../_raw/")
+url <-
+  "https://hastie.su.domains/ElemStatLearn/datasets/SAheart.data"
+destination <- "../_raw/raw.txt"
+download.file(url, destination)
 ```
 
 Save the loaded data as csv
 
-```{r} data <- read_delim("../_raw/raw.txt",                    delim = ",",                    show_col_types = FALSE)}
+```{r}
+data <-
+  read_delim("../_raw/raw.txt",
+             delim = ",",
+             show_col_types = FALSE)
 ```
 
-```{r} ## Function to randomly replace the  set.seed(123) add_na_randomly <- function(x, prob = 0.01) {   set.seed(123)   replace(x,runif(length(x))<prob,NA) }
+```{r}
+## Function to randomly replace the  
+
+
+add_na_randomly <- function(x, prob = 0.01) {
+  set.seed(123)
+  replace(x, runif(length(x)) < prob, NA)
+}
 ```
 
-```{r} # Run add_na_randomly on all column error_data <- data %>%    mutate_all(add_na_randomly)}
+```{r}
+# Run add_na_randomly on all column 
+
+error_data <- data %>%    
+  mutate_all(add_na_randomly)
 ```
 
-```{r} # Create directory data and save the loaded data set dir.create(path = "../data/") write_csv(x = error_data, file = "../data/loaded.csv")}
+```{r}
+# Create directory data and save the loaded data set 
+dir.create(path = "../data/") 
+write_csv(x = error_data, file = "../data/loaded.csv")
 ```

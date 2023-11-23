@@ -1,0 +1,101 @@
+Install and load required packages, installment is only required if you dont have the packages required installed already
+
+```{r}
+library(ggplot2)
+library(broom)
+library(corrplot)
+```
+
+```{r}
+# Read our data into a data frame (replace 'your_data.csv' with our actual data file)
+data <- read.csv("../data/augmented.csv")
+```
+
+```{r}
+# Extract the numeric columns for PCA
+numeric_data <- data %>%
+  select_if(is.numeric) %>% 
+  select(-chd)
+```
+
+```{r}
+# Perform PCA
+pca_result <- prcomp(numeric_data, scale. = TRUE)
+```
+
+```{r}
+# Print summary of PCA
+summary(pca_result)
+```
+
+```{r}
+pca_list <- factor(str_c("PCA", 1:9), levels = str_c("PCA", 1:9))
+cum_var_list <-
+  (cumsum((pca_result$sdev ^ 2)) / sum((pca_result$sdev ^ 2))) * 100
+
+ggplot(
+  tibble(component = pca_list, cumil_variance = cum_var_list),
+  aes(x = component, y = cumil_variance)
+) +
+  geom_bar(stat = "identity", fill = "#0053B3") +
+  geom_hline(yintercept = 90,
+             linetype = "dashed",
+             color = "red") +
+  geom_text(
+    aes(x = "PCA1", y = 90, label = "90%"),
+    hjust = -0.2,
+    vjust = -0.5,
+    color = "red"
+  ) +
+  labs(x = "Principal Component", y = "Percentage of Variance Explained", title = "Cumulative Variance Explained") 
+```
+
+```{r}
+var_list <-
+  (((pca_result$sdev ^ 2)) / sum((pca_result$sdev ^ 2))) * 100
+
+ggplot(
+  tibble(component = pca_list, variance_explained = var_list),
+  aes(x = component, y = variance_explained)
+) +
+  geom_bar(stat = "identity", fill = "#0053B3") +
+  labs(x = "Principal Component", y = "Percentage of Variance Explained", title = "Variance Explained by each component")
+```
+
+```{r}
+pca_result %>%
+  augment(data) %>% # add original dataset back in
+  ggplot(mapping = aes(.fittedPC1, .fittedPC2, color = chd_status)) + 
+  geom_point(size = 1.5) +
+  scale_color_manual(
+    values = c("Present" = "#D55E00", "Absent" = "#0072B2")
+  ) +
+  labs(x = "PCA1", y = "PCA2", title = "Projection on PCA components", color = "coronary heart disease")
+```
+
+```{r}
+
+# Calculate corelation matrix
+cor_matrix <- cor(numeric_data) %>% 
+  round(2)
+
+corrplot(cor_matrix,type = "full", method = 'color')
+```
+
+```{r}
+# Correlation of variable with chd
+corr_chd <- cor(numeric_data,data$chd)
+corr_chd <-  tibble(Variables = rownames(corr_chd), Correlation = round(corr_chd,4))
+
+corr_chd
+```
+
+```{r}
+# Create a biplot illustrating the relationship between the first two principal components.
+biplot(pca_result, scale = 0)
+```
+
+```{r}
+# Retrieve the distinct loadings (coefficients) representing the contribution of each variable to each principal component.
+loadings <- pca_result$rotation
+```
