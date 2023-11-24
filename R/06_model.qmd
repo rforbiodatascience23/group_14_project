@@ -5,13 +5,15 @@ format: html
 editor: visual
 ---
 
-## Modelling of the data 
+## Modelling of the data
 
 Loading Libraries
 
 ```{r}
 library(tidyverse)
 library(broom)
+library(dplyr)
+library(purrr)
 ```
 
 Load augmented data
@@ -19,18 +21,36 @@ Load augmented data
 ```{r}
 #loading augmentated data for modeling
 lm_data <- read_csv("../data/augmented.csv")
+
 ```
 
 Modelling using lm() function
 
 ```{r}
-lm_model <- lm(chd ~ tobacco + alcohol, data = lm_data)
+lm_data_nested <- lm_data %>%
+  group_by(age_interval) %>%
+  nest() %>%
+  mutate(model_object <- map(.x = data ,
+                      .f = ~lm(formula = chd~tobacco, data = .x)
+                      ))%>%
+  ungroup()
+
+lm_data_nested |>
+  filter(age_interval == "20-40") |>
+  pull() |>
+  pluck(1) |>
+  tidy(conf.int = TRUE, conf.level = 0.95)
+#lm_model <- lm(chd ~ tobacco + alcohol+obesity+age, data = lm_data)
 ```
 
 Making the model data tidy
 
 ```{r}
 lm_model |> tidy()
+```
+
+```{r}
+summary(lm_model) 
 ```
 
 Visualizing P value of the model
