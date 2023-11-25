@@ -21,7 +21,11 @@ data <- data %>%
 ```{r}
 
 data <- data %>%
-  mutate(age_interval = cut(age, breaks = c(0, 20, 40, 60, Inf), labels = c("0-20", "20-40", "40-60", "60+")))
+  mutate(age_interval = cut(
+    age,
+    breaks = c(0, 20, 40, 60, Inf),
+    labels = c("0-20", "20-40", "40-60", "60+")
+  ))
 ```
 
 ```{r}

@@ -5,7 +5,7 @@ format: html
 editor: visual
 ---
 
-## Modelling of the data 
+## Modelling of the data
 
 Loading Libraries
 
