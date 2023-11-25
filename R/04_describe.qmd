@@ -1,0 +1,80 @@
+```{r}
+library(tidyverse)
+```
+
+
+```{r}
+data <- read.csv("../data/augmented.csv")
+colnames(data)
+```
+
+```{r}
+# Summary statistics for numeric variables
+summary_stats <- data %>%
+  select(sbp, tobacco, ldl, adiposity, typea, obesity, alcohol, age) %>%
+  summary() 
+```
+```{r}
+# Count of each unique value for the 'famhist' variable
+famhist_counts <- data %>%
+  count(famhist)
+```
+```{r}
+# Count of each unique combination of 'famhist' and 'chd' variables
+famhist_chd_counts <- data %>%
+  count(famhist, chd)
+```
+```{r}
+# Display the results
+print("Summary Statistics:")
+print(summary_stats)
+```
+```{r}
+print(famhist_counts)
+```
+
+```{r}
+print(famhist_chd_counts)
+```
+```{r}
+numeric_vars <- c("sbp", "tobacco", "ldl", "adiposity", "typea", "obesity", "alcohol", "age")
+
+data %>%
+  select(all_of(numeric_vars)) %>%
+  gather() %>%
+  ggplot(aes(x = value)) +
+  geom_histogram(binwidth = 5, fill = "skyblue", color = "black") +
+  facet_wrap(~ key, scales = "free") +
+  labs(title = "Distribution of Numeric Variables", x = "Value", y = "Frequency") +
+  theme_minimal()
+```
+```{r}
+# Visualize relationships between numeric variables
+numeric_correlation <- data %>%
+  select(all_of(numeric_vars)) %>%
+  cor()
+```
+
+```{r}
+corrplot::corrplot(numeric_correlation, method = "circle")
+```
+
+```{r}
+
+# Explore the distribution of categorical variables more efficiently
+categorical_vars <- c("famhist", "age_interval", "weight_status", "alcohol_status", "exercise_habits", "inheritance", "chd_status")
+
+plots_list <- data %>%
+  pivot_longer(cols = all_of(categorical_vars)) %>%
+  group_by(name, value) %>%
+  summarise(count = n()) %>%
+  ggplot(aes(x = name, y = count, fill = value)) +
+  geom_bar(stat = "identity") +
+  labs(title = "Distribution of Categorical Variables", x = "Variable", y = "Count") +
+  theme_minimal() +
+  facet_wrap(~ name, scales = "free")
+
+# Display the combined plot
+print(plots_list)
+```
+
