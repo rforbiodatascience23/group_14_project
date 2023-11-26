@@ -1,10 +1,8 @@
 ```{r}
 library(tidyverse)
-<<<<<<< HEAD
 library(broom)
-=======
 library(patchwork)
->>>>>>> fc47dbcb6f4a58f2ef56b96a6b25dbe4d66ebbe6
+
 ```
 
 ```{r}
@@ -107,18 +105,7 @@ print(combined_plot)
 # Explore the distribution of each categorical variable separately
 categorical_vars <- c("famhist", "age_interval", "weight_status", "alcohol_status", "exercise_habits", "inheritance", "chd_status")
 
-<<<<<<< HEAD
-plots_list <- data %>%
-  pivot_longer(cols = all_of(categorical_vars)) %>%
-  group_by(name, value) %>%
-  summarise(count = n()) %>%
-  ggplot(aes(x = name, y = count, fill = value)) +
-  geom_bar(stat = "identity") +
-  labs(title = "Distribution of Categorical Variables", x = "Variable", y = "Count") +
-  theme_minimal() +
-  facet_wrap(~ name, scales = "free", ncol = 4) +
-  theme(legend.position = "bottom")
-=======
+
 # Create a list of individual plots
 plots_list <- map(categorical_vars, ~
   ggplot(data, aes_string(x = ., fill = .)) +
@@ -134,7 +121,7 @@ plots_list <- map(categorical_vars, ~
 
 # Combine all individual plots into one using patchwork
 combined_plot <- wrap_plots(plots_list)
->>>>>>> fc47dbcb6f4a58f2ef56b96a6b25dbe4d66ebbe6
+
 
 # Display the combined plot
 print(combined_plot)
