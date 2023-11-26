@@ -1,0 +1,19 @@
+---
+title: "00_all.qmd"
+author: "group14"
+format: html
+editor: visual
+---
+
+## Calling all the files
+
+```{r}
+#running all the files
+source(file="01_load.qmd")
+source(file="02_clean.qmd")
+source(file="03_augment.qmd")
+source(file="04_describe.qmd")
+source(file="05_analysis.qmd")
+source(file="05_analysis_PCA.qmd")
+source(file="06_model.qmd")
+```
