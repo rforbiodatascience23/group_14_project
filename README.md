@@ -1,9 +1,3 @@
----
-title: "README"
-output: html_document
-date: "2023-11-26"
----
-
 # Group 14
 
 ## Contributors
