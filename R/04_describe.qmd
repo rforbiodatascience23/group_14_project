@@ -1,7 +1,7 @@
 ```{r}
 library(tidyverse)
+library(broom)
 ```
-
 
 ```{r}
 data <- read.csv("../data/augmented.csv")
@@ -12,23 +12,27 @@ colnames(data)
 # Summary statistics for numeric variables
 summary_stats <- data %>%
   select(sbp, tobacco, ldl, adiposity, typea, obesity, alcohol, age) %>%
-  summary() 
+  summary()
 ```
+
 ```{r}
 # Count of each unique value for the 'famhist' variable
 famhist_counts <- data %>%
   count(famhist)
 ```
+
 ```{r}
 # Count of each unique combination of 'famhist' and 'chd' variables
 famhist_chd_counts <- data %>%
   count(famhist, chd)
 ```
+
 ```{r}
 # Display the results
 print("Summary Statistics:")
 print(summary_stats)
 ```
+
 ```{r}
 print(famhist_counts)
 ```
@@ -36,6 +40,7 @@ print(famhist_counts)
 ```{r}
 print(famhist_chd_counts)
 ```
+
 ```{r}
 numeric_vars <- c("sbp", "tobacco", "ldl", "adiposity", "typea", "obesity", "alcohol", "age")
 
@@ -48,6 +53,7 @@ data %>%
   labs(title = "Distribution of Numeric Variables", x = "Value", y = "Frequency") +
   theme_minimal()
 ```
+
 ```{r}
 # Visualize relationships between numeric variables
 numeric_correlation <- data %>%
@@ -72,9 +78,19 @@ plots_list <- data %>%
   geom_bar(stat = "identity") +
   labs(title = "Distribution of Categorical Variables", x = "Variable", y = "Count") +
   theme_minimal() +
-  facet_wrap(~ name, scales = "free")
+  facet_wrap(~ name, scales = "free", ncol = 4) +
+  theme(legend.position = "bottom")
 
 # Display the combined plot
 print(plots_list)
 ```
 
+```{r}
+data %>% 
+  group_by(age_interval,weight_status) %>% 
+  summarise(n = n(), .groups = 'drop') %>% 
+  ggplot(mapping = aes(x = age_interval, y = n, fill = weight_status)) +
+  geom_bar(position = "stack", stat = "identity") + 
+  theme_minimal() + 
+  labs(y = "count")
+```

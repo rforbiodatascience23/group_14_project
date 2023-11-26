@@ -13,6 +13,7 @@ Load raw data
 
 ```{r}
 dir.create(path = "../_raw/")
+dir.create(path = "../results/")
 url <-
   "https://hastie.su.domains/ElemStatLearn/datasets/SAheart.data"
 destination <- "../_raw/raw.txt"

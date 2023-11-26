@@ -51,7 +51,6 @@ data <- data %>%
     alcohol > 40 ~ "High",
     TRUE ~ NA_character_  # Handles cases not covered by the conditions
   ))
-
 ```
 
 ```{r}

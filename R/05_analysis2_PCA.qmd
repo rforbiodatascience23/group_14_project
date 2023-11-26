@@ -33,7 +33,7 @@ pca_list <- factor(str_c("PCA", 1:9), levels = str_c("PCA", 1:9))
 cum_var_list <-
   (cumsum((pca_result$sdev ^ 2)) / sum((pca_result$sdev ^ 2))) * 100
 
-ggplot(
+cum_var_explained <- ggplot(
   tibble(component = pca_list, cumil_variance = cum_var_list),
   aes(x = component, y = cumil_variance)
 ) +
@@ -48,54 +48,43 @@ ggplot(
     color = "red"
   ) +
   labs(x = "Principal Component", y = "Percentage of Variance Explained", title = "Cumulative Variance Explained") 
+
+cum_var_explained
 ```
 
 ```{r}
 var_list <-
   (((pca_result$sdev ^ 2)) / sum((pca_result$sdev ^ 2))) * 100
 
-ggplot(
+var_explained_plot <- ggplot(
   tibble(component = pca_list, variance_explained = var_list),
   aes(x = component, y = variance_explained)
 ) +
   geom_bar(stat = "identity", fill = "#0053B3") +
   labs(x = "Principal Component", y = "Percentage of Variance Explained", title = "Variance Explained by each component")
+
+var_explained_plot
 ```
 
 ```{r}
-pca_result %>%
+pca_seperation <- pca_result %>%
   augment(data) %>% # add original dataset back in
-  ggplot(mapping = aes(.fittedPC1, .fittedPC2, color = chd_status)) + 
+  ggplot(mapping = aes(.fittedPC1, .fittedPC2, color = chd_status)) +
   geom_point(size = 1.5) +
-  scale_color_manual(
-    values = c("Present" = "#D55E00", "Absent" = "#0072B2")
-  ) +
-  labs(x = "PCA1", y = "PCA2", title = "Projection on PCA components", color = "coronary heart disease")
+  scale_color_manual(values = c("Present" = "#D55E00", "Absent" = "#0072B2")) +
+  labs(
+    x = "PCA1",
+    y = "PCA2",
+    title = "Projection on PCA components",
+    color = "coronary heart disease"
+  )
+
+pca_seperation
 ```
 
 ```{r}
 
-# Calculate corelation matrix
-cor_matrix <- cor(numeric_data) %>% 
-  round(2)
-
-corrplot(cor_matrix,type = "full", method = 'color')
-```
-
-```{r}
-# Correlation of variable with chd
-corr_chd <- cor(numeric_data,data$chd)
-corr_chd <-  tibble(Variables = rownames(corr_chd), Correlation = round(corr_chd,4))
-
-corr_chd
-```
-
-```{r}
-# Create a biplot illustrating the relationship between the first two principal components.
-biplot(pca_result, scale = 0)
-```
-
-```{r}
-# Retrieve the distinct loadings (coefficients) representing the contribution of each variable to each principal component.
-loadings <- pca_result$rotation
+ggsave("../results/pca_seperation_plot.png",plot = pca_seperation)
+ggsave("../results/var_explained_plot.png",plot = var_explained_plot)
+ggsave("../results/cum_var_explained.png",plot = cum_var_explained)
 ```
