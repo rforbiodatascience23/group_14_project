@@ -14,34 +14,67 @@ data <- read.csv("../data/augmented.csv")
 Tobacco and alcohol
 
 ```{r}
-ggplot(data=data,
-       mapping = aes(x=alcohol,
-                     y=tobacco,
-                     color=chd))+
-  geom_point()
+col_colours <- c("0" = "#0053B3", 
+                 "1"="#FFAA17")
+
+
+exposure_behaviour <- ggplot(data=data,
+                             mapping = aes(x=alcohol,
+                                           y=tobacco,
+                                           color=factor(chd))) +
+    scale_color_manual(values = col_colours) +
+  geom_point() +
+  labs(title = "Correlation between behavioural exposures (tobacco and alcohol) and coronary heart disease", 
+       x = "Alcohol", 
+       y = "Tobacco", 
+       color  = "Coronary heart disease")
+
+exposure_behaviour
+
 ```
 
 Obesity and adiposity
 
 ```{r}
 
-col_colours <- c("0" = "#0053B3", "1"="#FFAA17")
-ggplot(data=data,
-       mapping = aes(x=adiposity,
-                     y=obesity,
-                     color=factor(chd)))+
-  geom_point()+ 
-  geom_smooth(method = 'loess', formula = 'y~x') + scale_color_manual(values = col_colours)
+indicators_meta <- ggplot(data=data,
+                          mapping = aes(x=adiposity,
+                                        y=obesity,
+                                        color=factor(chd))) +
+  geom_point() + 
+  geom_smooth(method = 'loess', 
+              formula = 'y~x') + 
+  scale_color_manual(values = col_colours) +
+  labs(title = "Correlation between metabolic indicators (adiposity and obesity) and coronary heart disease", 
+       x = "Adiposity", 
+       y = "Obesity", 
+       color  = "Coronary heart disease")
+
+indicators_meta
+
 ```
 
 Investigating family history
 
 ```{r}
 
+fam_history <- ggplot(data,
+                      mapping = aes(x=inheritance)) +
+  geom_bar() +
+  theme_minimal() +
+  labs(title = "Cardiovascular disease by family history", x = "Inheritance pattern", y = "Count")
 
-ggplot(data,
-       mapping = aes(x=inheritance))+
-  geom_bar()+
-  theme_minimal()
+fam_history
+
 
 ```
+
+```{r}
+
+ggsave(filename = "Exposure.png", plot = exposure_behaviour, path = "../results/")
+ggsave(filename = "Metabolic indicators.png", plot = indicators_meta, path = "../results/")
+ggsave(filename = "Family history.png", plot = fam_history, path = "../results/")
+
+```
+
+
