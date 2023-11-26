@@ -24,7 +24,7 @@ lm_data <- read_csv("../data/augmented.csv")
 
 ```
 
-Modelling using lm() function. Its a linear regression modelling function. In the code below we are performing multiple linear regression.
+Modelling using lm() function. Its a linear regression modelling function. In the code below we are performing multiple linear regression. The predictor values were chosen based on the correlation matrix. From summary of the model we can infer that the age and tobacco are excellent predictors for the model whereas alcohol and obesity does not seem to be good predictors. This is an assumption from observing the p-value for the predictors. We also observe the R square value is 15% which shows that the model does not fit the data well. The future prospect would be to change the predictors or the type of model used for this data.
 
 ```{r}
 lm_model <- lm(chd ~ tobacco + alcohol+obesity+age, data = lm_data)
@@ -43,13 +43,14 @@ summary(lm_model)
 Visualizing P value of the model
 
 ```{r}
-lm_model |> 
+model_plot<-lm_model |> 
   tidy() |> 
   ggplot(aes(x = term,
              y = -log10(p.value))) +
   geom_point() +
   geom_hline(yintercept = -log10(0.05),
              linetype = "dashed")
+model_plot
 ```
 
 Including the confidence intervals
@@ -64,11 +65,17 @@ ci
 Visualizing the confidence interval
 
 ```{r}
-ci |> 
+confidence_interval_plot<-ci |> 
   ggplot(aes(x = estimate,
              y = term,
              xmin = conf.low,
              xmax = conf.high)) +
   geom_errorbarh(height = 0.1) +
   geom_point()
+confidence_interval_plot
+```
+
+```{r}
+ggsave(filename = "model.png", plot = model_plot, path = "../results/")
+ggsave(filename = "confidence_interval.png", plot = confidence_interval_plot, path = "../results/")
 ```
