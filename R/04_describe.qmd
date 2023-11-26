@@ -1,6 +1,10 @@
 ```{r}
 library(tidyverse)
+<<<<<<< HEAD
 library(broom)
+=======
+library(patchwork)
+>>>>>>> fc47dbcb6f4a58f2ef56b96a6b25dbe4d66ebbe6
 ```
 
 ```{r}
@@ -66,10 +70,44 @@ corrplot::corrplot(numeric_correlation, method = "circle")
 ```
 
 ```{r}
+#correlation of variable with chd 
+numeric_data <- data %>% select_if(is.numeric) %>% select(-chd)
+corr_chd <- cor(numeric_data,data$chd)
+corr_chd <- tibble(Variables = rownames(corr_chd), Correlation = round(corr_chd,4))
+```
 
-# Explore the distribution of categorical variables more efficiently
+
+
+```{r}
+
+# Explore the distribution of each categorical variable separately
 categorical_vars <- c("famhist", "age_interval", "weight_status", "alcohol_status", "exercise_habits", "inheritance", "chd_status")
 
+# Create a list of individual plots
+plots_list <- map(categorical_vars, ~
+  ggplot(data, aes_string(x = ., fill = .)) +
+    geom_bar(stat = "count", position = "dodge") +
+    labs(title = paste("Distribution of", .), x = ., y = "Count") +
+    theme_minimal()+
+    theme(axis.text.x = element_text(size = 6),       # Adjust x-axis label font size
+          axis.text.y = element_text(size = 6),       # Adjust y-axis label font size
+          axis.title = element_text(size = 8),       # Adjust axis title font size
+          plot.title = element_text(size = 10))       # Adjust plot title font size
+)
+
+# Combine all individual plots into one using patchwork
+combined_plot <- wrap_plots(plots_list)
+
+# Display the combined plot
+print(combined_plot)
+
+```
+```{r}
+
+# Explore the distribution of each categorical variable separately
+categorical_vars <- c("famhist", "age_interval", "weight_status", "alcohol_status", "exercise_habits", "inheritance", "chd_status")
+
+<<<<<<< HEAD
 plots_list <- data %>%
   pivot_longer(cols = all_of(categorical_vars)) %>%
   group_by(name, value) %>%
@@ -80,9 +118,27 @@ plots_list <- data %>%
   theme_minimal() +
   facet_wrap(~ name, scales = "free", ncol = 4) +
   theme(legend.position = "bottom")
+=======
+# Create a list of individual plots
+plots_list <- map(categorical_vars, ~
+  ggplot(data, aes_string(x = ., fill = .)) +
+    geom_bar(stat = "count", position = "dodge") +
+    labs(title = paste("Distribution of", .), x = ., y = "Count") +
+    theme_minimal() +
+    theme(axis.text.x = element_text(size = 6),       # Adjust x-axis label font size
+          axis.text.y = element_text(size = 6),       # Adjust y-axis label font size
+          axis.title = element_text(size = 10),       # Adjust axis title font size
+          plot.title = element_text(size = 12),      # Adjust plot title font size
+          legend.text = element_text(size = 6))      # Adjust legend text font size
+)
+
+# Combine all individual plots into one using patchwork
+combined_plot <- wrap_plots(plots_list)
+>>>>>>> fc47dbcb6f4a58f2ef56b96a6b25dbe4d66ebbe6
 
 # Display the combined plot
-print(plots_list)
+print(combined_plot)
+
 ```
 
 ```{r}

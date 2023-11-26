@@ -3,7 +3,7 @@ library(tidyverse)
 ```
 
 ```{r}
-data <- read.csv("../data/cleaned.csv")
+data <- read.csv("../data/loaded.csv")
 ```
 
 ```{r}
