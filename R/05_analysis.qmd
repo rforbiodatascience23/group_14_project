@@ -37,13 +37,9 @@ ggplot(data=data,
 Investigating family history
 
 ```{r}
-hered <- data |> mutate(inheritance = case_when(
-    famhist == "Present" & chd == "1" ~ "Inherited",
-    famhist == "Absent" & chd == "1" ~ "De novo",
-    famhist == "Present" & chd == "0" ~ "Escaped",
-    famhist == "Absent" & chd == "0" ~ "Safe"))
 
-ggplot(data=hered,
+
+ggplot(data,
        mapping = aes(x=inheritance))+
   geom_bar()+
   theme_minimal()
