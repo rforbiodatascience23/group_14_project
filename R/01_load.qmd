@@ -1,6 +1,10 @@
-# Load Raw Data
-
-Load libraries
+---
+title: "load"
+format:
+  html:
+    embed-resources: true
+editor: visual
+---
 
 ```{r}
 #| message: false 
@@ -8,8 +12,6 @@ library(tidyverse)
 library(readr) 
 library(purrr)
 ```
-
-Load raw data
 
 ```{r}
 dir.create(path = "../_raw/")
@@ -19,8 +21,6 @@ url <-
 destination <- "../_raw/raw.txt"
 download.file(url, destination)
 ```
-
-Save the loaded data as csv
 
 ```{r}
 data <-

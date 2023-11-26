@@ -1,9 +1,17 @@
+---
+title: "Augment"
+format:
+  html:
+    embed-resources: true
+editor: visual
+---
+
 ```{r}
 library(tidyverse)
 ```
 
 ```{r}
-data <- read.csv("../data/loaded.csv")
+data <- read.csv("../data/cleaned.csv")
 ```
 
 ```{r}

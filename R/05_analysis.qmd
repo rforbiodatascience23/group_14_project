@@ -1,4 +1,10 @@
-Load packages
+---
+title: "Analysis"
+format:
+  html:
+    embed-resources: true
+editor: visual
+---
 
 ```{r}
 library(tidyverse)
@@ -76,5 +82,3 @@ ggsave(filename = "Metabolic indicators.png", plot = indicators_meta, path = "..
 ggsave(filename = "Family history.png", plot = fam_history, path = "../results/")
 
 ```
-
-

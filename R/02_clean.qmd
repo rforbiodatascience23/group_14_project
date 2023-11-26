@@ -1,7 +1,14 @@
-# Clean Loaded Data
+---
+title: "Clean"
+format:
+  html:
+    embed-resources: true
+editor: visual
+---
 
 ```{r}
 library(ggplot2)
+library(tidyverse)
 ```
 
 ```{r}
@@ -10,9 +17,7 @@ data <- read.csv("../data/loaded.csv")
 
 ```{r}
 # Drop NA and remove 
-cleaned_data <- data %>%
-  drop_na() %>% 
-  select(-row.names)
+cleaned_data <- data |> drop_na() |> select(-row.names)
 ```
 
 ```{r}

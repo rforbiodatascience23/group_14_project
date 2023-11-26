@@ -1,19 +1,53 @@
 ---
-title: "00_all.qmd"
+title: "DoIt"
 author: "group14"
-format: html
+format:
+  html:
+    embed-resources: true
 editor: visual
 ---
 
 ## Calling all the files
 
 ```{r}
+library(quarto)
+library(purrr)
+```
+
+```{r}
+
+
 #running all the files
-source(file="01_load.qmd")
-source(file="02_clean.qmd")
-source(file="03_augment.qmd")
-source(file="04_describe.qmd")
-source(file="05_analysis.qmd")
-source(file="05_analysis_PCA.qmd")
-source(file="06_model.qmd")
+quarto_render(input = "01_load.qmd", output_file = "01_load.html")
+quarto_render(input = "02_clean.qmd", output_file = "02_clean.html")
+quarto_render(input = "03_augment.qmd", output_file = "03_augment.html")
+quarto_render(input = "04_describe.qmd", output_file = "04_describe.html")
+quarto_render(input = "05_analysis.qmd", output_file = "05_analysis.html")
+quarto_render(input = "05_analysis2_PCA.qmd", output_file = "05_analysis_PCA.html")
+quarto_render(input = "06_model.qmd", output_file = "06_model.html")
+```
+
+```{r}
+move_to_results <- function(file_name){
+  source_directory <- "."
+  destination_directory <- "../results/"
+  
+  source_file <- file.path(source_directory, file_name)
+  destination_file <- file.path(destination_directory, file_name)
+  file.copy(from = source_file, to = destination_file, overwrite = TRUE)
+
+  # Check if the file was successfully copied before removing the original
+  if (file.exists(destination_file)) {
+    # Remove the original file
+    file.remove(source_file)
+  } else {
+    warning("File copy failed. Check the file paths and permissions.")
+  }
+}
+```
+
+```{r}
+file_list <- c("01_load.html","02_clean.html","03_augment.html","04_describe.html","05_analysis.html", "05_analysis_PCA.html", "06_model.html")
+
+map(file_list, move_to_results)
 ```

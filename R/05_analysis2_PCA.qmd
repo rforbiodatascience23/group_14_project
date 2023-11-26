@@ -1,9 +1,19 @@
+---
+title: "PCA"
+format:
+  html:
+    embed-resources: true
+editor: visual
+---
+
 Install and load required packages, installment is only required if you dont have the packages required installed already
 
 ```{r}
 library(ggplot2)
 library(broom)
 library(corrplot)
+library(stats)
+library(tidyverse)
 ```
 
 ```{r}
@@ -30,6 +40,7 @@ summary(pca_result)
 
 ```{r}
 pca_list <- factor(str_c("PCA", 1:9), levels = str_c("PCA", 1:9))
+
 cum_var_list <-
   (cumsum((pca_result$sdev ^ 2)) / sum((pca_result$sdev ^ 2))) * 100
 

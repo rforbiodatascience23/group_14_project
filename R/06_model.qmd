@@ -1,10 +1,10 @@
 ---
-title: "06_model"
-author: "s222498"
-format: html
+title: "Model"
+format:
+  html:
+    embed-resources: true
 editor: visual
 ---
-
 ## Modelling of the data
 
 Loading Libraries used for modelling
