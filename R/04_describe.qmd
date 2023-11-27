@@ -72,6 +72,7 @@ numeric_correlation <- data %>%
 ```
 
 ```{r}
+#correlation plot for each numerical variable
 corrplot::corrplot(numeric_correlation, method = "circle")
 ```
 
@@ -114,20 +115,38 @@ categorical_vars <- c("famhist", "age_interval", "weight_status", "alcohol_statu
 
 
 # Create a list of individual plots
-plots_list <- map(categorical_vars, ~
-  ggplot(data, aes_string(x = ., fill = .)) +
+library(ggplot2)
+library(purrr)
+
+# Assuming data and categorical_vars are defined
+
+# Create a function to save plots with specified dimensions
+save_plot <- function(p, filename, width = 6, height = 4) {
+  ggsave(filename, plot = p, width = width, height = height, units = "in", dpi = 300)
+}
+
+# Create and save plots
+plots_list <- map(categorical_vars, function(var) {
+  p <- ggplot(data, aes_string(x = var, fill = var)) +
     geom_bar(stat = "count", position = "dodge") +
-    labs(title = paste("Distribution of", .), x = ., y = "Count") +
+    labs(title = paste("Distribution of", var), x = var, y = "Count") +
     theme_minimal() +
-    theme(axis.text.x = element_text(size = 6),       # Adjust x-axis label font size
-          axis.text.y = element_text(size = 6),       # Adjust y-axis label font size
-          axis.title = element_text(size = 10),       # Adjust axis title font size
-          plot.title = element_text(size = 12),      # Adjust plot title font size
-          legend.text = element_text(size = 6))      # Adjust legend text font size
-)
+    theme(
+      axis.text.x = element_text(angle = 45, hjust = 1, size = 6),
+      axis.text.y = element_text(size = 6),
+      axis.title = element_text(size = 8),
+      plot.title = element_text(size = 8),
+      legend.text = element_text(size = 8),
+      legend.title = element_text(size = 6),
+      legend.key.size = unit(0.5, "cm")
+    )
+  
+  save_plot(p, paste("plot_", var, ".png"))
+})
+
 
 # Combine all individual plots into one using patchwork
-combined_plot <- wrap_plots(plots_list)
+#combined_plot <- wrap_plots(plots_list)
 
 
 # Display the combined plot

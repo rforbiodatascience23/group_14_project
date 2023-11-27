@@ -27,7 +27,7 @@ data <- data %>%
 ```
 
 ```{r}
-
+#converting age variable into age_interval (interval like 0-20, 20-40 and so on)
 data <- data %>%
   mutate(age_interval = cut(
     age,
