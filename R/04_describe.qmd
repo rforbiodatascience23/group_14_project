@@ -146,7 +146,7 @@ plots_list <- map(categorical_vars, function(var) {
       legend.key.size = unit(0.5, "cm")
     )
   
-  save_plot(p, paste("../results/plot_", var, ".png"))
+  save_plot(p, paste("../results/plot_",var, ".png"))
 })
 
 
