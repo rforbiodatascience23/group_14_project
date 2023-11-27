@@ -3,7 +3,7 @@
 ## Contributors
 
 | Name                                       | Student number | GitHub username |
-|--------------------------------------------|----------------|-----------------|
+|---------------------------------------|-----------------|-----------------|
 | Anu Dinesh, Oswal                          |                |                 |
 | Emma Enam, Senanu                          | s193588        | emmasena        |
 | Navaneeth, Kizhakkumbadan Pacha            |                |                 |
@@ -16,4 +16,26 @@ Coronary heart disease (CHD) is a leading cause of death worldwide. Lifestyle-ba
 
 ## Data
 
+The data used in this investigation was collected in a retrospective cohort study, reported in a paper by Rossouw et al. (1), under the following PMID: 6623218.
+
+The following biological variables are included for each study participant:
+
+1.  Age
+2.  Systolic blood pressure
+3.  Low-density lipoprotein (cholesterol)
+4.  Adiposity
+5.  BMI
+6.  Coronary heart disease diagnosis
+7.  Family history of coronary heart disease
+
+The following behavioral indicators are included for each study participant:
+
+1.  Current tobacco consumption
+2.  Current alcohol consumption
+3.  Personality type (type A vs type B)
+
 ## Usage
+
+## References
+
+(1) Rossouw JE, Du Plessis JP, Benadé AJ, et al. Coronary risk factor screening in three rural communities. The CORIS baseline study. *S Afr Med J*. 1983;64(12):430-436.
