@@ -29,7 +29,7 @@ author: Group 14
 
 ## Method
 
-![Fig2: Method](../results/method.png){width="613"}
+![Fig2.1: Method](../results/method.png){width="613"}
 
 ## Loading and Cleaning the Data
 
@@ -38,7 +38,7 @@ author: Group 14
 -   Saved as loaded.csv
 -   02_clean.qmd removes NAs and "row.names" column
 
-![Fig2: Method](../results/dataflow.png){width="800"}
+![Fig2.2: Method](../results/dataflow.png){width="800"}
 
 ## Augmentation
 
@@ -47,35 +47,38 @@ author: Group 14
 -   Introduce "weight_status" variable based on obesity criteria.
 -   Include "alcohol_status" variable reflecting alcohol consumption levels.
 -   Create "exercise_habits" variable based on type and age.
--   Add "hered" variable to indicate inherited disease status (yes/no).
+-   Add "hered" variable to indicate inherited disease status.
 
 ## Description
 
--   Provide summary statistics for numeric variables. ![Fig3: Distribution of each categorical varibale](../results/combined_plot.png){width="500"}![Fig4: Correlation Plot](../results/corr_plot.png){width="300"}
+-   Provide summary statistics for numeric variables.
+![Fig3: Distribution of each categorical varibale](../results/plot_ chd_status .png){width="400"}
+![Fig4.1: Correlation Plot](../results/corr_plot.png){width="300"} 
+
+![Fig4.2: Correlation with chd Plot](../results/corr_chd.png){width="370"}
 
 ## Analysis: initial visualizations
-
-![](../results/05b_Metabolic indicators.png){fig-align="center"}
-
-![](../results/05a_Exposure.png){fig-align="left"}
-
-![](../results/05c_Family history.png){fig-align="right"}
+- Descriptive analysis of the dataset was carried out
+![](../results/05b_Metabolic indicators.png){width="300"}![](../results/05a_Exposure.png){width="300"}![](../results/05c_Family history.png){width="300"}
 
 ## PCA
 
 -   PCA analysis was carried out on the numeric columns
 -   No clear separation is observed
--   No major feature reduction ![Fig5: PCA Seperation](../results/pca_seperation_plot.png){width="500"} ![Fig6: PCA Variance](../results/cum_var_explained.png){width="500"}
+-   No major feature reduction 
+
+![Fig5: PCA Seperation](../results/pca_seperation_plot.png){width="350"} 
+![Fig6: PCA Variance](../results/cum_var_explained.png){width="250"}
 
 ## Result-Model
 
 -   Multiple linear regression was performed on the augmented dataset
 
-    ![Fig4: Model result](../results/model01.png){width="512"}
+     ![Fig7.1: Model result](../results/model01.png){width="512"}
 
 ## Result-Model
 
-![Fig7: P-value plotted for model](../results/model.png){width="457"}
+![Fig7.2: P-value plotted for model](../results/model.png){width="457"}
 
 ## Result-model
 
