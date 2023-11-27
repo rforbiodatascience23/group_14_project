@@ -65,9 +65,7 @@ author: Group 14
 
 ## Initial visualizations
 
-![Fig6: Behavioural exposures](../results/05a_Exposure.png){fig-align="left"}
-
-![Fig7: Family history](../results/05c_Family history.png){fig-align="right"}
+![Fig6: Behavioural exposures](../results/05a_Exposure.png){width="500"}![Fig7: Family history](../results/05c_Family history.png){width="500"}
 
 ## PCA
 
