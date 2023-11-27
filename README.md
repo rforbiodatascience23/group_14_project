@@ -12,7 +12,7 @@
 
 ## Background
 
-Coronary heart disease (CHD) is a leading cause of death worldwide. Lifestyle-based preventative measures are effective, non-invasive ways of reducing the prevalence of CHD, though they rely on good knowledge of the risk factors relevant to a given community. This study investigates the risk factors associated with CHD in three communities of rural Afrikaans-speaking Whites in the south-western Cape, with the aim of revealing the most prominent risk factors.\
+Coronary heart disease (CHD) is a leading cause of death worldwide. Lifestyle-based preventative measures are effective, non-invasive ways of reducing the prevalence of CHD, though they rely on good knowledge of the risk factors relevant to a given community. This study investigates the risk factors associated with CHD in three communities of rural Afrikaans-speaking Whites in the south-western Cape, with the aim of revealing the most prominent risk factors.
 
 ## Data
 
