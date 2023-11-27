@@ -77,8 +77,8 @@ fam_history
 
 ```{r}
 
-ggsave(filename = "Exposure.png", plot = exposure_behaviour, path = "../results/")
-ggsave(filename = "Metabolic indicators.png", plot = indicators_meta, path = "../results/")
-ggsave(filename = "Family history.png", plot = fam_history, path = "../results/")
+ggsave(filename = "05a_Exposure.png", plot = exposure_behaviour, path = "../results/")
+ggsave(filename = "05b_Metabolic indicators.png", plot = indicators_meta, path = "../results/")
+ggsave(filename = "05c_Family history.png", plot = fam_history, path = "../results/")
 
 ```

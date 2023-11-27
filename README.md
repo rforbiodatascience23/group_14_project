@@ -3,7 +3,7 @@
 ## Contributors
 
 | Name                                       | Student number | GitHub username |
-|---------------------------------------|-----------------|-----------------|
+|-------------------------------------|------------------|------------------|
 | Anu Dinesh, Oswal                          |                |                 |
 | Emma Enam, Senanu                          | s193588        | emmasena        |
 | Navaneeth, Kizhakkumbadan Pacha            |                |                 |
