@@ -6,11 +6,15 @@
 |-------------------------------------|------------------|------------------|
 | Anu Dinesh, Oswal                          |                |                 |
 | Emma Enam, Senanu                          | s193588        | emmasena        |
+<<<<<<< HEAD
 | Navaneeth, Kizhakkumbadan Pacha            |                |                 |
 <<<<<<< HEAD
 | Rikke Chrishell Jennifer Dissing, Pedersen |                |                 |
 | Shah Mir, Ahmed Bibi                       |     s236400    | shahMirSam      |
 =======
+=======
+| Navaneeth, Kizhakkumbadan Pacha            | s222486        | Navaneeth-K-P   |
+>>>>>>> 175adb001226c9b6137262a8ce8707d8ecadf694
 | Rikke Chrishell Jennifer Dissing, Pedersen |s210417         | rikkechrishelljennifer |
 | Shah Mir, Ahmed Bibi                       |                |                 |
 >>>>>>> 584df70ab2b71de08cfe39cef038580a935626a8
