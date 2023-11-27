@@ -7,7 +7,7 @@ author: Group 14
 
 ## Introduction
 
--   Dataset: South African male heart-disease sample.
+-   Dataset: South African male heart-disease sample
 
     ![Fig1: Data set](../results/data%20set.png){width="615"}
 
