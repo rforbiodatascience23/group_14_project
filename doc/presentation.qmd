@@ -51,18 +51,29 @@ author: Group 14
 
 ## Description
 
+
 -   Provide summary statistics for numeric variables.
 ![Fig3: Distribution of each categorical varibale](../results/plot_ chd_status .png){width="400"}
 ![Fig4.1: Correlation Plot](../results/corr_plot.png){width="300"} 
 
 ![Fig4.2: Correlation with chd Plot](../results/corr_chd.png){width="370"}
 
-## Analysis: initial visualisations
+
+## Analysis: initial visualizations
+
+![Fig5: Metabolic indicators](images/05b_Metabolic%20indicators-01.png){fig-align="center"}
+
+## Initial visualizations
+
+![Fig6: Behavioural exposures](images/05a_Exposure-01.png){fig-align="left"}
+
+![Fig7: Family history](images/05c_Family%20history-01.png){fig-align="right"}
 
 ## PCA
 
 -   PCA analysis was carried out on the numeric columns
 -   No clear separation is observed
+
 -   No major feature reduction 
 
 ![Fig5: PCA Seperation](../results/pca_seperation_plot.png){width="350"} 
