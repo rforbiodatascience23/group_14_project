@@ -61,13 +61,13 @@ author: Group 14
 
 ## Analysis: initial visualizations
 
-![Fig5: Metabolic indicators](images/05b_Metabolic%20indicators-01.png){fig-align="center"}
+![Fig5: Metabolic indicators](../results/05b_Metabolic indicators.png){fig-align="center"}
 
 ## Initial visualizations
 
-![Fig6: Behavioural exposures](images/05a_Exposure-01.png){fig-align="left"}
+![Fig6: Behavioural exposures](../results/05a_Exposure.png){fig-align="left"}
 
-![Fig7: Family history](images/05c_Family%20history-01.png){fig-align="right"}
+![Fig7: Family history](../results/05c_Family history.png){fig-align="right"}
 
 ## PCA
 
