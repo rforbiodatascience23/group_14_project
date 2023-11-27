@@ -73,7 +73,8 @@ numeric_correlation <- data %>%
 
 ```{r}
 #correlation plot for each numerical variable
-corrplot::corrplot(numeric_correlation, method = "circle")
+cor_plot <- corrplot::corrplot(numeric_correlation, method = "circle")
+cor_plot
 ```
 
 ```{r}
@@ -81,6 +82,7 @@ corrplot::corrplot(numeric_correlation, method = "circle")
 numeric_data <- data %>% select_if(is.numeric) %>% select(-chd)
 corr_chd <- cor(numeric_data,data$chd)
 corr_chd <- tibble(Variables = rownames(corr_chd), Correlation = round(corr_chd,4))
+corr_chd
 ```
 
 ```{r}
@@ -97,7 +99,10 @@ plots_list <- map(categorical_vars, ~
     theme(axis.text.x = element_text(size = 6),       # Adjust x-axis label font size
           axis.text.y = element_text(size = 6),       # Adjust y-axis label font size
           axis.title = element_text(size = 8),       # Adjust axis title font size
-          plot.title = element_text(size = 10))       # Adjust plot title font size
+          plot.title = element_text(size = 10),
+          legend.text = element_text(size = 6),
+          legend.title = element_text(size = 6),
+          legend.key.size = unit(0.3, "cm"))       # Adjust plot title font size
 )
 
 # Combine all individual plots into one using patchwork
@@ -141,7 +146,7 @@ plots_list <- map(categorical_vars, function(var) {
       legend.key.size = unit(0.5, "cm")
     )
   
-  save_plot(p, paste("plot_", var, ".png"))
+  save_plot(p, paste("../results/plot_", var, ".png"))
 })
 
 
@@ -151,6 +156,8 @@ plots_list <- map(categorical_vars, function(var) {
 
 # Display the combined plot
 print(combined_plot)
+
+save_plot(combined_plot,"../results/combined_plot.png")
 
 ```
 

@@ -371,24 +371,36 @@ Group 14
 <li>Downloaded from the source as .txt file</li>
 <li>Randomly replace cells with NA values</li>
 <li>Saved as loaded.csv</li>
-<li>02_clean.qmd removes NAs and “row.names” column <img data-src="../results/dataflow.png" width="800" alt="Fig2: Method"></li>
+<li>02_clean.qmd removes NAs and “row.names” column</li>
 </ul>
-</section>
+
+<img data-src="../results/dataflow.png" width="800" class="r-stretch quarto-figure-center"><p class="caption">Fig2: Method</p></section>
 <section id="augmentation" class="slide level2">
 <h2>Augmentation</h2>
+<ul>
+<li>Convert “famhist” to numerical variable: 1 for present, 0 for absent.</li>
+<li>Transform “age” into “age_interval” with specified intervals (e.g., 0-20, 20-40).</li>
+<li>Introduce “weight_status” variable based on obesity criteria.</li>
+<li>Include “alcohol_status” variable reflecting alcohol consumption levels.</li>
+<li>Create “exercise_habits” variable based on type and age.</li>
+<li>Add “hered” variable to indicate inherited disease status (yes/no).</li>
+</ul>
 </section>
 <section id="description" class="slide level2">
 <h2>Description</h2>
+<ul>
+<li>Provide summary statistics for numeric variables. <img data-src="../results/combined_plot.png" width="500" alt="Fig3: Distribution of each categorical varibale"><img data-src="../results/corr_plot.png" width="300" alt="Fig4: Correlation Plot"></li>
+</ul>
 </section>
-<section id="analysis" class="slide level2">
-<h2>Analysis</h2>
+<section id="analysis-initial-visualisations" class="slide level2">
+<h2>Analysis: initial visualisations</h2>
 </section>
 <section id="pca" class="slide level2">
 <h2>PCA</h2>
 <ul>
 <li>PCA analysis was carried out on the numeric columns</li>
 <li>No clear separation is observed</li>
-<li>No major feature reduction <img data-src="../results/pca_seperation_plot.png" width="500" alt="Fig3: PCA Seperation"> <img data-src="../results/cum_var_explained.png" width="500" alt="Fig4: PCA Variance"></li>
+<li>No major feature reduction <img data-src="../results/pca_seperation_plot.png" width="500" alt="Fig5: PCA Seperation"> <img data-src="../results/cum_var_explained.png" width="500" alt="Fig6: PCA Variance"></li>
 </ul>
 </section>
 <section id="result-model" class="slide level2">
@@ -406,11 +418,11 @@ Group 14
 <section id="result-model-1" class="slide level2">
 <h2>Result-Model</h2>
 
-<img data-src="../results/model.png" width="457" class="r-stretch quarto-figure-center"><p class="caption">Fig5: P-value plotted for model</p></section>
+<img data-src="../results/model.png" width="457" class="r-stretch quarto-figure-center"><p class="caption">Fig7: P-value plotted for model</p></section>
 <section id="result-model-2" class="slide level2">
 <h2>Result-model</h2>
 
-<img data-src="../results/confidence_interval.png" width="445" class="r-stretch quarto-figure-center"><p class="caption">Fig6: confidence interval of the model</p><div class="footer footer-default">
+<img data-src="../results/confidence_interval.png" width="445" class="r-stretch quarto-figure-center"><p class="caption">Fig8: confidence interval of the model</p><div class="footer footer-default">
 
 </div>
 </section>
