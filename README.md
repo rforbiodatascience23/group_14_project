@@ -8,7 +8,7 @@
 | Emma Enam, Senanu                          | s193588        | emmasena        |
 | Navaneeth, Kizhakkumbadan Pacha            |                |                 |
 | Rikke Chrishell Jennifer Dissing, Pedersen |                |                 |
-| Shah Mir, Ahmed Bibi                       |                |                 |
+| Shah Mir, Ahmed Bibi                       |     s236400    | shahMirSam      |
 
 ## Background
 
