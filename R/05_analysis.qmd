@@ -30,7 +30,7 @@ exposure_behaviour <- ggplot(data=data,
                                            color=factor(chd))) +
     scale_color_manual(values = col_colours) +
   geom_point() +
-  labs(title = "Correlation between behavioural exposures (tobacco and alcohol) and coronary heart disease", 
+  labs(title = "Behavioural exposures (tobacco and alcohol) and coronary heart disease", 
        x = "Alcohol", 
        y = "Tobacco", 
        color  = "Coronary heart disease")
@@ -51,7 +51,7 @@ indicators_meta <- ggplot(data=data,
   geom_smooth(method = 'loess', 
               formula = 'y~x') + 
   scale_color_manual(values = col_colours) +
-  labs(title = "Correlation between metabolic indicators (adiposity and obesity) and coronary heart disease", 
+  labs(title = "Metabolic indicators (adiposity and obesity) and coronary heart disease", 
        x = "Adiposity", 
        y = "Obesity", 
        color  = "Coronary heart disease")
