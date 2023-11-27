@@ -4,7 +4,7 @@
 
 | Name                                       | Student number | GitHub username        |
 |------------------------------------|------------------|------------------|
-| Anu Dinesh, Oswal                          |                |                        |
+| Anu Dinesh, Oswal                          | s222498        | anu-oswal              |
 | Emma Enam, Senanu                          | s193588        | emmasena               |
 | Shah Mir, Ahmed Bibi                       | s236400        | shahMirSam             |
 | Navaneeth, Kizhakkumbadan Pacha            | s222486        | Navaneeth-K-P          |
@@ -34,7 +34,6 @@ The following behavioral indicators are included for each study participant:
 2.  Current alcohol consumption
 3.  Personality type (type A vs type B)
 
-## Usage
 
 ## References
 
